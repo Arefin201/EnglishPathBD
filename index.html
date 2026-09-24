@@ -1915,7 +1915,7 @@ Views.speaking = () => {
   <div class="fade-in max-w-5xl mx-auto">
     ${SectionTitle('Speaking Lab', 'The most important section. Here you produce English — not just study it.')}
 
-    <div class="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-5">
+    <div class="flex gap-2 overflow-x-auto scrollbar pb-2 mb-5">
       ${[['patterns','🧩 Sentence Patterns'],['topics','💬 Speaking Topics'],['questions','❓ Question Practice'],['roleplay','🎭 Roleplay'],['shadow','🔁 Shadowing'],['record','🎤 Recording'],['ai','🤖 AI Conversation'],['pron','🗣️ Pronunciation']]
         .map(([k,l]) => `<button onclick="App.speakTab('${k}')" class="shrink-0 px-4 py-2 rounded-xl text-sm font-bold transition ${tab===k ? 'bg-brand-600 text-white shadow-soft' : 'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:border-brand-300'}">${l}</button>`).join('')}
     </div>
@@ -2148,7 +2148,7 @@ Views.vocabulary = () => {
     ${SectionTitle('Vocabulary', `${VOCAB.length} words with pronunciation, Bangla meaning, collocations, synonyms and a speaking question.`,
       Badge(`${learned} learned`, learned>0?'green':'slate'))}
 
-    <div class="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-5">
+    <div class="flex gap-2 overflow-x-auto scrollbar pb-2 mb-5">
       ${cats.map(c => `<button onclick="App.vocabCat('${esc(c)}')" class="shrink-0 px-4 py-2 rounded-xl text-sm font-bold transition ${cat===c?'bg-brand-600 text-white':'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300'}">${esc(c)}</button>`).join('')}
     </div>
 
@@ -2233,7 +2233,7 @@ Views.grammar = () => {
   return `
   <div class="fade-in max-w-4xl mx-auto">
     ${SectionTitle('Grammar Academy', 'Rule → Bangla explanation → examples → common mistakes → practice → speaking.')}
-    <div class="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-5">
+    <div class="flex gap-2 overflow-x-auto scrollbar pb-2 mb-5">
       ${[['all','All'],['1','Level 0–1'],['3','Level 2–3'],['5','Level 4–5'],['6','Level 6']].map(([k,l]) =>
         `<button onclick="App.grammarLvl('${k}')" class="shrink-0 px-4 py-2 rounded-xl text-sm font-bold transition ${String(lvl)===k?'bg-brand-600 text-white':'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300'}">${l}</button>`).join('')}
     </div>
@@ -2335,7 +2335,7 @@ Views.conversation = () => {
   return `
   <div class="fade-in max-w-4xl mx-auto">
     ${SectionTitle('Real-Life Conversations', `${CONVERSATIONS.length} scenarios with Bangla explanation, vocabulary, roleplay and quiz.`)}
-    <div class="flex gap-2 overflow-x-auto no-scrollbar pb-2 mb-5">
+    <div class="flex gap-2 overflow-x-auto scrollbar pb-2 mb-5">
       ${[['all','All'],['0','Beginner'],['1','Elementary'],['2','Pre-Int'],['3','Intermediate'],['4','Upper-Int'],['5','Advanced']].map(([k,l]) =>
         `<button onclick="App.convLvl('${k}')" class="shrink-0 px-4 py-2 rounded-xl text-sm font-bold transition ${String(lvl)===k?'bg-brand-600 text-white':'bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300'}">${l}</button>`).join('')}
     </div>
