@@ -1368,7 +1368,7 @@ function renderQuiz(questions, containerId, onDone) {
         <div class="font-semibold text-sm mb-3 text-slate-900 dark:text-white">${i+1}. ${esc(q.q)}</div>
         <div class="space-y-2">${q.o.map((opt, j) =>
           `<button onclick="Quiz.pick('${containerId}',${i},${j})" data-opt="${j}"
-            class="quiz-opt w-full text-left px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-brand-400 hover:bg-brand-50/50 dark:hover:bg-brand-950/20 text-sm transition">
+            class="quiz-opt w-full text-left px-4 py-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-rose-400 hover:bg-emerald-50/60 dark:hover:border-rose-500 dark:hover:bg-emerald-950/30 text-sm transition">
             <span class="inline-block w-5 font-bold text-slate-400">${String.fromCharCode(65+j)}</span>${esc(opt)}</button>`).join('')}</div>
       </div>`;
     }
@@ -1400,9 +1400,33 @@ const Quiz = {
   pick(cid, qi, oi) {
     const reg = this.registry[cid]; if (!reg || reg.state.submitted) return;
     reg.state.answers[qi] = oi;
+
+    const HOVER_CLASSES = [
+      'hover:border-rose-400','hover:bg-emerald-50/60',
+      'dark:hover:border-rose-500','dark:hover:bg-emerald-950/30'
+    ];
+    const SELECTED_CLASSES = [
+      'border-blue-500','bg-blue-100',
+      'dark:border-blue-400','dark:bg-blue-950/50'
+    ];
+
     $$(`#${cid} [data-q="${qi}"] .quiz-opt`).forEach(b => {
-      b.classList.remove('border-brand-500','bg-brand-50','dark:bg-brand-950/40');
-      if (+b.dataset.opt === oi) b.classList.add('border-brand-500','bg-brand-50','dark:bg-brand-950/40');
+      // Reset all state classes
+      b.classList.remove(...SELECTED_CLASSES);
+      b.classList.remove(
+        'border-brand-500','bg-brand-50','dark:bg-brand-950/40',
+        'border-emerald-500','bg-emerald-50','dark:bg-emerald-950/30',
+        'border-rose-500','bg-rose-50','dark:bg-rose-950/30'
+      );
+
+      if (+b.dataset.opt === oi) {
+        // ✅ Selected → Blue, remove hover so it stays blue
+        b.classList.remove(...HOVER_CLASSES);
+        b.classList.add(...SELECTED_CLASSES);
+      } else {
+        // Not selected → re-enable hover effect
+        b.classList.add(...HOVER_CLASSES);
+      }
     });
   },
   type(cid, qi, val) {
@@ -1425,8 +1449,24 @@ const Quiz = {
         $$(`#${cid} [data-q="${i}"] .quiz-opt`).forEach(b => {
           b.disabled = true;
           const j = +b.dataset.opt;
-          if (j === q.a) b.classList.add('border-emerald-500','bg-emerald-50','dark:bg-emerald-950/30');
-          else if (j === Number(given)) b.classList.add('border-rose-500','bg-rose-50','dark:bg-rose-950/30');
+
+          // Remove all prior state (blue selected + hover)
+          b.classList.remove(
+            'border-blue-500','bg-blue-100','dark:border-blue-400','dark:bg-blue-950/50',
+            'hover:border-rose-400','hover:bg-emerald-50/60',
+            'dark:hover:border-rose-500','dark:hover:bg-emerald-950/30',
+            'border-emerald-500','bg-emerald-50','dark:bg-emerald-950/30',
+            'border-rose-500','bg-rose-50','dark:bg-rose-950/30'
+          );
+
+          if (j === q.a) {
+            // ✅ Correct answer → Green
+            b.classList.add('border-emerald-500','bg-emerald-100','dark:bg-emerald-950/40','dark:border-emerald-500');
+          } else if (j === Number(given)) {
+            // ❌ Selected but wrong → Red
+            b.classList.add('border-rose-500','bg-rose-100','dark:bg-rose-950/40','dark:border-rose-500');
+          }
+          // else: not selected + not correct → stays neutral
         });
       }
     });
