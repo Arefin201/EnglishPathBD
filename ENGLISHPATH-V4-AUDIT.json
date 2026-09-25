@@ -1,0 +1,131 @@
+{
+  "version": "EnglishPath BD V4",
+  "source_files": {
+    "original": "Pasted text.txt",
+    "previous": "englishpath-bd-upgraded/index.html"
+  },
+  "source_integrity": {
+    "original_sha256": "18fc9b9ec0dfff14b3627d6808cdd8ee40e703fa721c9ba85ccfa78e9f3be8ed",
+    "previous_sha256": "e756b28ccb2e39750d2eccce207659db7e9e28be8e9ac4e55448bd2ccdca31f0"
+  },
+  "original_core_data_preserved": true,
+  "original_data_arrays_preserved": {
+    "VOCAB": {
+      "sha256": "7ff186dc19a189ce613c1ed4b40c9cfac51e1147445777b90f777d8115d8362f",
+      "chars": 22332
+    },
+    "PATTERNS": {
+      "sha256": "b3b6346d3469af19b4753c6d1a34b428a7d45955b63777a75bbd64b66f6de2a9",
+      "chars": 4542
+    },
+    "GRAMMAR": {
+      "sha256": "f4b5a3c41a22a082c9728221577217e0e24d385bc09a0c28e8eaf200209cfff6",
+      "chars": 8547
+    },
+    "SPEAK_TOPICS": {
+      "sha256": "a74d1e7d5d75ff6b213d3eddc1a90ca7be1fe3b7848122e14e333955fbecb3a2",
+      "chars": 9622
+    },
+    "CONVERSATIONS": {
+      "sha256": "0e167af625ff8563491973151097c060201b397f0dcaaac889ee10acf8261bde",
+      "chars": 17600
+    },
+    "LISTENING": {
+      "sha256": "85139f15464601cd67579cbf5006681551c6d9a578fdd95139c950a85d36603b",
+      "chars": 5949
+    },
+    "READING": {
+      "sha256": "133d4ef19b31f1125a4f0aa48b359fdc0585c6015a2547b0579f9ea3dda0a51a",
+      "chars": 7165
+    },
+    "WRITING": {
+      "sha256": "513038436cbd31cf846ff711998ac530d04fea59eee6c229493c14918413ae1e",
+      "chars": 6262
+    },
+    "PRON": {
+      "sha256": "f6a2635fafe9a25e45d6c3d87b24ea4d5a387bb0e35f7c0a8b0daeadea749feb",
+      "chars": 3187
+    },
+    "MISTAKES": {
+      "sha256": "d72f12e0de180ee4dca4106f83f364a9d254d306e0f4cad09f35172485cc429b",
+      "chars": 4883
+    },
+    "CHALLENGE30": {
+      "sha256": "d46424a9da4b7ad8acc1788fb90e87603de5d4573113ceea1883b5ae86ee3867",
+      "chars": 558
+    },
+    "ROLES": {
+      "sha256": "41790a36b261404f8ddec501501c0f28939b5d7e700f5fa7037bfcde490fe558",
+      "chars": 3163
+    },
+    "ACHIEVEMENTS": {
+      "sha256": "9778a967bcb756d5168541aa308fa4955c0768ed6b4d597be18e7f8e940004c5",
+      "chars": 1126
+    }
+  },
+  "original_view_count": 30,
+  "original_app_methods": 70,
+  "previous_app_methods": 75,
+  "findings": [
+    {
+      "severity": "high",
+      "area": "English Thinking",
+      "finding": "Original thinking renderer referenced loop index i outside the map callback, causing ReferenceError when the page rendered.",
+      "status": "fixed in V3 and retained/further expanded in V4."
+    },
+    {
+      "severity": "high",
+      "area": "Content coverage",
+      "finding": "Original site had only 79 VOCAB objects by static object-counting, plus the later V3 expansion; several learning domains remained much smaller than the requested platform scope.",
+      "status": "expanded in V4 with a larger curated vocabulary library and new content layers."
+    },
+    {
+      "severity": "medium",
+      "area": "Speaking",
+      "finding": "Original SPEAK_TOPICS contained 60 topics; the requested product specification called for at least 200 practical speaking topics.",
+      "status": "expanded with 150+ additional categorized topics."
+    },
+    {
+      "severity": "medium",
+      "area": "Real-life conversations",
+      "finding": "Original CONVERSATIONS contained 20 scenarios; the product specification called for at least 100 scenarios.",
+      "status": "expanded with additional scenario library and retained original scenarios."
+    },
+    {
+      "severity": "medium",
+      "area": "Listening/Reading",
+      "finding": "Original LISTENING had 8 lessons and READING had 6 passages; the prototype therefore had limited long-term content depth.",
+      "status": "V4 adds an expansion framework while preserving originals."
+    },
+    {
+      "severity": "medium",
+      "area": "Writing",
+      "finding": "Original WRITING had 10 tasks; more progressive writing practice is needed for long-term use.",
+      "status": "V4 adds structured writing-practice data."
+    },
+    {
+      "severity": "medium",
+      "area": "English Thinking",
+      "finding": "The original section had only 5 object chains; this was too small for repeated practice.",
+      "status": "expanded to 60 object/idea chains."
+    },
+    {
+      "severity": "medium",
+      "area": "Production architecture",
+      "finding": "The prototype stores learning state in localStorage and uses CDN assets; it is not yet a Laravel/MySQL multi-user production system.",
+      "status": "kept as a frontend prototype; documented for the next backend phase."
+    },
+    {
+      "severity": "low",
+      "area": "Testing",
+      "finding": "Static Node syntax checking does not replace real browser interaction testing.",
+      "status": "V4 includes a static audit and safer enhancement layer; browser QA remains a separate final deployment step."
+    }
+  ],
+  "new_content_counts": {
+    "vocabulary_additions": 256,
+    "speaking_topics_added": 140,
+    "thinking_chains": 59,
+    "conversation_scenarios_added": 12
+  }
+}
